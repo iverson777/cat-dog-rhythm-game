@@ -188,12 +188,17 @@ body {
 .select-controls {
   display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 16px;
+  width: 100%;
 }
 
 .btn-nav {
   width: 48px;
   height: 48px;
+  min-width: 48px;
+  flex-shrink: 0;
   border: none;
   border-radius: 50%;
   background: #e0e0e0;

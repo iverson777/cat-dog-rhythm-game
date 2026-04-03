@@ -33,7 +33,7 @@ const Songs = [
     id: 'chiikawa1',
     name: '睡衣派對之歌',
     emoji: '🐹',
-    difficulty: '★★',
+    difficulty: '★★★★',
     bpm: 112,
     mp3: 'Pajama Parties Song.mp3',
     melody: [] // not used for MP3 songs
@@ -42,7 +42,7 @@ const Songs = [
     id: 'chiikawa2',
     name: '自言自語',
     emoji: '🐰',
-    difficulty: '★★',
+    difficulty: '★★★',
     bpm: 108,
     mp3: 'Hitorigoto.mp3',
     melody: [] // not used for MP3 songs

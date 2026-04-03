@@ -78,15 +78,16 @@ function renderSongCarousel() {
     container.appendChild(card);
   });
 
-  // Center the selected card
-  // Each card is 180px wide + 20px gap = 200px per card
-  // Offset so selected card lands in the middle of the wrapper
+  // Center the selected card dynamically
   requestAnimationFrame(() => {
     const wrapper = document.querySelector('.song-carousel-wrapper');
     const wrapperWidth = wrapper.offsetWidth;
-    const cardWidth = 200; // 180px card + 20px gap
-    const selectedCardCenter = selectedIndex * cardWidth + 90; // center of selected card
-    const offset = (wrapperWidth / 2) - selectedCardCenter;
+    const cards = container.querySelectorAll('.song-card');
+    if (cards.length === 0) return;
+    const card = cards[selectedIndex];
+    const cardLeft = card.offsetLeft;
+    const cardW = card.offsetWidth;
+    const offset = (wrapperWidth / 2) - cardLeft - (cardW / 2);
     container.style.transform = `translateX(${offset}px)`;
   });
 }
