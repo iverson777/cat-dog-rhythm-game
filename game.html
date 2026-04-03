@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>喵狗節奏大師</title>
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
   <!-- 投幣頁 -->
@@ -21,6 +21,9 @@
         <button id="btn-start" class="btn btn-start" disabled>START</button>
       </div>
       <p class="hint-text">按空白鍵投幣 或 點擊「製造代幣」</p>
+      <div class="sound-reminder" id="sound-reminder">
+        <span>🔊</span> 請關閉靜音模式以獲得最佳體驗
+      </div>
     </div>
   </div>
 
@@ -31,9 +34,9 @@
       <div class="song-carousel" id="song-carousel"></div>
     </div>
     <div class="select-controls">
-      <span class="key-hint">← 左鍵</span>
-      <button id="btn-confirm-song" class="btn btn-confirm">確認選擇 (Enter)</button>
-      <span class="key-hint">右鍵 →</span>
+      <button id="btn-song-prev" class="btn btn-nav">◀</button>
+      <button id="btn-confirm-song" class="btn btn-confirm">確認選擇</button>
+      <button id="btn-song-next" class="btn btn-nav">▶</button>
     </div>
   </div>
 
@@ -49,6 +52,7 @@
       </div>
       <div class="hud-right">
         <span id="hud-time">0:00 / 0:00</span>
+        <button id="btn-quit" class="btn-quit">✕</button>
       </div>
     </div>
     <div class="game-area">
@@ -115,10 +119,10 @@
     </div>
   </div>
 
-  <script src="js/audio.js?v=8"></script>
-  <script src="js/songs.js?v=8"></script>
-  <script src="js/sprite.js?v=8"></script>
-  <script src="js/game.js?v=8"></script>
-  <script src="js/main.js?v=8"></script>
+  <script src="js/audio.js?v=9"></script>
+  <script src="js/songs.js?v=9"></script>
+  <script src="js/sprite.js?v=9"></script>
+  <script src="js/game.js?v=9"></script>
+  <script src="js/main.js?v=9"></script>
 </body>
 </html>

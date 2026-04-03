@@ -13,7 +13,10 @@ function addCoin() {
   coins++;
   document.getElementById('coin-count').textContent = coins;
   document.getElementById('btn-start').disabled = coins < 1;
+  AudioManager.resume();
   AudioManager.playCoin();
+  const reminder = document.getElementById('sound-reminder');
+  if (reminder) reminder.classList.add('hidden');
 
   const fly = document.createElement('span');
   fly.className = 'coin-fly';
@@ -91,6 +94,8 @@ function selectMove(dir) {
   renderSongCarousel();
 }
 
+document.getElementById('btn-song-prev').addEventListener('click', () => selectMove(-1));
+document.getElementById('btn-song-next').addEventListener('click', () => selectMove(1));
 document.getElementById('btn-confirm-song').addEventListener('click', () => {
   startGameWithSong(Songs[selectedIndex]);
 });
@@ -109,6 +114,21 @@ document.addEventListener('keydown', (e) => {
     startGameWithSong(Songs[selectedIndex]);
   }
 });
+
+// Swipe support for song carousel
+(function() {
+  const wrapper = document.querySelector('.song-carousel-wrapper');
+  let touchStartX = 0;
+  wrapper.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
+  wrapper.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) {
+      selectMove(dx > 0 ? -1 : 1);
+    }
+  });
+})();
 
 // ===== Game =====
 let currentSong = null;
@@ -159,6 +179,14 @@ async function startGameWithSong(song) {
     }
   }, 800);
 }
+
+// Quit button — exit game and go back to song select
+document.getElementById('btn-quit').addEventListener('click', () => {
+  GameEngine.stop();
+  SpriteManager.stopAll();
+  initSelectPage();
+  switchPage('select-page');
+});
 
 // Game key handling — Left/Right arrow keys
 document.addEventListener('keydown', (e) => {
