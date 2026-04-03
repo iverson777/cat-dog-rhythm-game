@@ -237,5 +237,31 @@ const AudioManager = (() => {
     };
   }
 
-  return { playHit, playCoin, playCountdown, playMelody, playMP3, detectBeats, resume, getCtx };
+  // ===== Song Preview =====
+  let previewPlayer = null;
+
+  function playPreview(song) {
+    stopPreview();
+    resume();
+    if (song.mp3) {
+      const audio = new Audio(song.mp3);
+      audio.volume = 0.5;
+      audio.loop = true;
+      audio.play().catch(() => {});
+      previewPlayer = { stop() { audio.pause(); audio.src = ''; } };
+    } else if (song.melody && song.melody.length > 0) {
+      // Play first 8 seconds of synth melody, then loop
+      const player = playMelody(song.melody, song.bpm, 0);
+      previewPlayer = player;
+    }
+  }
+
+  function stopPreview() {
+    if (previewPlayer) {
+      previewPlayer.stop();
+      previewPlayer = null;
+    }
+  }
+
+  return { playHit, playCoin, playCountdown, playMelody, playMP3, detectBeats, resume, getCtx, playPreview, stopPreview };
 })();

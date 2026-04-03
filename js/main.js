@@ -55,6 +55,7 @@ let selectedIndex = 0;
 function initSelectPage() {
   selectedIndex = 0;
   renderSongCarousel();
+  AudioManager.playPreview(Songs[selectedIndex]);
 }
 
 function renderSongCarousel() {
@@ -72,6 +73,7 @@ function renderSongCarousel() {
     card.addEventListener('click', () => {
       selectedIndex = i;
       renderSongCarousel();
+      AudioManager.playPreview(Songs[selectedIndex]);
     });
     container.appendChild(card);
   });
@@ -92,11 +94,13 @@ function renderSongCarousel() {
 function selectMove(dir) {
   selectedIndex = (selectedIndex + dir + Songs.length) % Songs.length;
   renderSongCarousel();
+  AudioManager.playPreview(Songs[selectedIndex]);
 }
 
 document.getElementById('btn-song-prev').addEventListener('click', () => selectMove(-1));
 document.getElementById('btn-song-next').addEventListener('click', () => selectMove(1));
 document.getElementById('btn-confirm-song').addEventListener('click', () => {
+  AudioManager.stopPreview();
   startGameWithSong(Songs[selectedIndex]);
 });
 
@@ -111,6 +115,7 @@ document.addEventListener('keydown', (e) => {
     selectMove(1);
   } else if (e.code === 'Enter') {
     e.preventDefault();
+    AudioManager.stopPreview();
     startGameWithSong(Songs[selectedIndex]);
   }
 });
