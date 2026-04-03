@@ -615,6 +615,87 @@ body {
 .lb-date { font-size: 0.8rem; color: #aaa; }
 .lb-empty { text-align: center; color: #ccc; padding: 12px; }
 
+/* Touch Controls (mobile) */
+.touch-controls {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  gap: 0;
+}
+.touch-btn {
+  flex: 1;
+  padding: 28px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.touch-left {
+  background: rgba(66, 165, 245, 0.2);
+  color: #42a5f5;
+  border-right: 2px solid #e0e0e0;
+}
+.touch-right {
+  background: rgba(255, 112, 67, 0.2);
+  color: #ff7043;
+}
+.touch-btn:active {
+  filter: brightness(0.85);
+  transform: scale(0.97);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .touch-controls {
+    display: flex;
+  }
+  .game-hud {
+    padding: 4px 12px;
+    height: 40px;
+    font-size: 0.85rem;
+  }
+  .score-display { font-size: 1.1rem; }
+  .character { width: 70px; padding-bottom: 30px; }
+  .char-sprite { width: 65px; }
+  .char-label { font-size: 0.75rem; }
+  .lane { width: 70px; }
+  .note { width: 50px; height: 20px; }
+  .key-indicator { display: none; }
+  .hit-line { bottom: 40px; }
+  .game-area { padding-bottom: 80px; }
+  .combo-display { font-size: 1.4rem; top: 35%; }
+  .judge-text { font-size: 1.2rem; bottom: 60px; }
+
+  /* Coin page mobile */
+  .game-title { font-size: 2rem; }
+  .coin-display { font-size: 1.8rem; }
+  .blink-text { font-size: 1.1rem; }
+
+  /* Select page mobile */
+  .select-title { font-size: 1.6rem; }
+  .song-card { width: 140px; height: 180px; }
+  .song-card .song-emoji { font-size: 2.2rem; }
+  .song-card .song-name { font-size: 0.85rem; }
+
+  /* Result page mobile */
+  .result-grade { font-size: 3.5rem; }
+  .result-score { font-size: 1.4rem; }
+}
+
+@media (max-width: 480px) {
+  .character { width: 55px; padding-bottom: 20px; }
+  .char-sprite { width: 50px; }
+  .lane { width: 60px; }
+  .note { width: 42px; height: 18px; }
+}
+
 .result-buttons {
   display: flex;
   gap: 16px;

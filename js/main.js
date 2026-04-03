@@ -173,6 +173,18 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Touch controls for mobile
+document.getElementById('touch-left').addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  AudioManager.resume();
+  GameEngine.handleKey(0);
+});
+document.getElementById('touch-right').addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  AudioManager.resume();
+  GameEngine.handleKey(1);
+});
+
 // ===== Result Page =====
 document.getElementById('btn-retry').addEventListener('click', () => {
   if (currentSong) {
