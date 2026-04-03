@@ -199,6 +199,7 @@ body {
   height: 48px;
   min-width: 48px;
   flex-shrink: 0;
+  padding: 0;
   border: none;
   border-radius: 50%;
   background: #e0e0e0;
