@@ -1,6 +1,6 @@
 /* ===== Reset & Base ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { touch-action: manipulation; }
+html { touch-action: manipulation; -ms-touch-action: manipulation; }
 
 body {
   background: #fff;

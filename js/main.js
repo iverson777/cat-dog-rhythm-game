@@ -240,6 +240,14 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// ===== Mobile: disable pinch zoom & double-tap zoom =====
+document.addEventListener('gesturestart', (e) => e.preventDefault());
+document.addEventListener('gesturechange', (e) => e.preventDefault());
+document.addEventListener('gestureend', (e) => e.preventDefault());
+document.addEventListener('touchstart', (e) => {
+  if (e.touches.length > 1) e.preventDefault();
+}, { passive: false });
+
 // ===== Mobile: move characters out of flex layout =====
 (function() {
   if (window.innerWidth > 768) return;
