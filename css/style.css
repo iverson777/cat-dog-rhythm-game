@@ -663,20 +663,25 @@ body {
     font-size: 0.85rem;
   }
   .score-display { font-size: 1.1rem; }
-  /* Mobile: characters float at top corners, lanes fill center */
+  /* Mobile: characters as fixed overlays */
   .character {
-    width: 60px;
-    padding-bottom: 4px;
-    position: absolute;
-    top: 8px;
-    z-index: 10;
+    position: fixed !important;
+    width: auto !important;
+    padding: 0 !important;
+    z-index: 50;
+    top: 50px;
+    pointer-events: none;
   }
-  .lane-section.lane-left .character { left: 0; }
-  .lane-section.lane-right .character { right: 0; }
-  .char-sprite { width: 55px; }
+  .cat-character {
+    left: 4px;
+  }
+  .dog-character {
+    right: 4px;
+  }
+  .char-sprite { width: 55px !important; }
   .char-label { font-size: 0.65rem; }
-  .lane-section { flex: 1; justify-content: center; }
-  .lane { width: 90px; }
+  .lane-section { flex: 1; }
+  .lane { flex: 1; width: auto; overflow: hidden; }
   .game-area { padding-bottom: 80px; }
   .note { width: 55px; height: 20px; }
   .key-indicator { display: none; }
