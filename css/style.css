@@ -1,5 +1,6 @@
 /* ===== Reset & Base ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { touch-action: manipulation; }
 
 body {
   background: #fff;
@@ -662,11 +663,22 @@ body {
     font-size: 0.85rem;
   }
   .score-display { font-size: 1.1rem; }
-  .character { display: none; }
+  /* Mobile: characters float at top corners, lanes fill center */
+  .character {
+    width: 60px;
+    padding-bottom: 4px;
+    position: absolute;
+    top: 8px;
+    z-index: 10;
+  }
+  .lane-section.lane-left .character { left: 0; }
+  .lane-section.lane-right .character { right: 0; }
+  .char-sprite { width: 55px; }
+  .char-label { font-size: 0.65rem; }
   .lane-section { flex: 1; justify-content: center; }
-  .lane { width: 100%; max-width: 180px; }
+  .lane { width: 90px; }
   .game-area { padding-bottom: 80px; }
-  .note { width: 60px; height: 22px; }
+  .note { width: 55px; height: 20px; }
   .key-indicator { display: none; }
   .hit-line { bottom: 90px; }
   .combo-display { font-size: 1.4rem; top: 30%; }
