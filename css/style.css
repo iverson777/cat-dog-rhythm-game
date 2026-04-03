@@ -680,9 +680,9 @@ body {
   .game-area { padding-bottom: 80px; }
   .note { width: 55px; height: 20px; }
   .key-indicator { display: none; }
-  .hit-line { bottom: 90px; }
+  .hit-line { bottom: 60px; }
   .combo-display { font-size: 1.4rem; top: 30%; }
-  .judge-text { font-size: 1.2rem; bottom: 110px; }
+  .judge-text { font-size: 1.2rem; bottom: 80px; }
 
   /* Coin page mobile */
   .game-title { font-size: 2rem; }
