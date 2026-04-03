@@ -206,3 +206,19 @@ document.addEventListener('keydown', (e) => {
     switchPage('select-page');
   }
 });
+
+// ===== Mobile: move characters out of flex layout =====
+(function() {
+  if (window.innerWidth > 768) return;
+  const gamePage = document.getElementById('game-page');
+  const cat = document.getElementById('char-cat');
+  const dog = document.getElementById('char-dog');
+  if (cat && gamePage) {
+    gamePage.appendChild(cat);
+    cat.classList.add('mobile-moved');
+  }
+  if (dog && gamePage) {
+    gamePage.appendChild(dog);
+    dog.classList.add('mobile-moved');
+  }
+})();
