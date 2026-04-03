@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>喵狗節奏大師 — 創作紀錄</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', 'Noto Sans TC', 'PingFang TC', sans-serif;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #ffe0e6 0%, #fff5e6 50%, #e0f0ff 100%);
+      text-align: center;
+      padding: 80px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(233,69,96,0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(66,165,245,0.06) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: 3.2rem;
+      color: #e94560;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 10px rgba(233,69,96,0.15);
+    }
+    .hero .subtitle {
+      font-size: 1.3rem;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .hero .location {
+      font-size: 1rem;
+      color: #aaa;
+      margin-bottom: 32px;
+    }
+    .hero .play-btn {
+      display: inline-block;
+      padding: 16px 48px;
+      background: #e94560;
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(233,69,96,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .play-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 28px rgba(233,69,96,0.45);
+    }
+
+    /* Sections */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .section h2 {
+      font-size: 1.8rem;
+      color: #e94560;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section h2 .emoji { font-size: 2rem; }
+    .section p {
+      font-size: 1.05rem;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    /* Story */
+    .story-highlight {
+      background: linear-gradient(135deg, #fff5f7, #fff9f0);
+      border-left: 4px solid #e94560;
+      padding: 24px 28px;
+      border-radius: 0 16px 16px 0;
+      margin: 24px 0;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    /* Image Grid */
+    .img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 24px 0;
+    }
+    .img-grid.three-col {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .img-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.2s;
+    }
+    .img-card:hover { transform: translateY(-4px); }
+    .img-card img {
+      width: 100%;
+      display: block;
+    }
+    .img-card .caption {
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      color: #888;
+      text-align: center;
+      font-weight: 500;
+    }
+    .img-card.wide {
+      grid-column: span 2;
+    }
+    .img-card.full {
+      grid-column: 1 / -1;
+    }
+
+    /* Sprite Showcase */
+    .sprite-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin: 16px 0;
+      padding: 20px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .sprite-row img {
+      width: 70px;
+      height: auto;
+      image-rendering: auto;
+    }
+    .sprite-label {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-top: 8px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+      margin: 24px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #e94560, #f0b429, #42a5f5);
+      border-radius: 3px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding-left: 24px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #e94560;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px rgba(233,69,96,0.2);
+    }
+    .timeline-item .time {
+      font-size: 0.85rem;
+      color: #e94560;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .timeline-item .event {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Screenshots grid */
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .screenshot-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .screenshot-card img {
+      width: 100%;
+      display: block;
+    }
+    .screenshot-card .label {
+      padding: 8px;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    /* Tech */
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .tech-tag {
+      padding: 6px 16px;
+      background: #f0f0f0;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    }
+    .feature-card .icon { font-size: 2rem; margin-bottom: 8px; }
+    .feature-card h3 { font-size: 1.1rem; color: #333; margin-bottom: 6px; }
+    .feature-card p { font-size: 0.9rem; color: #888; margin: 0; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #f5f5f5;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    .footer a { color: #e94560; text-decoration: none; }
+
+    /* Divider */
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ddd, transparent);
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2.2rem; }
+      .img-grid, .features { grid-template-columns: 1fr; }
+      .img-card.wide { grid-column: span 1; }
+      .screenshot-grid { grid-template-columns: 1fr 1fr; }
+      .sprite-row img { width: 50px; }
+      .section { padding: 40px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>🎵 喵狗節奏大師 🎵</h1>
+      <p class="subtitle">一個爸爸和女兒在機場等飛機時，一起做出來的節奏遊戲</p>
+      <p class="location">📍 2026.04.03 ／ 北海道・函館機場 ✈️</p>
+      <a href="game.html" class="play-btn">🎮 開始遊戲</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 故事 -->
+  <div class="section">
+    <h2><span class="emoji">✏️</span> 創作故事</h2>
+    <div class="story-highlight">
+      班機延誤，在函館機場等飛機的午後。<br>
+      Celia 最近迷上了吉伊卡哇（ちいかわ），走到哪唱到哪。她也很愛玩湯姆熊那種節奏遊戲機台。<br><br>
+      「爸爸，我們來做一個節奏遊戲好不好？」<br><br>
+      於是，一張紙、一支筆、一台筆電，父女倆的即興創作就這樣開始了。<br>
+      Celia 負責畫角色 — 一隻貓和一隻狗；爸爸負責用 AI 把手繪變成遊戲角色，再用 Claude Code 寫出整個遊戲。<br><br>
+      不到一個下午，一款有投幣、選歌、打節拍、放 MP3 真實音樂的完整節奏遊戲就誕生了。
+    </div>
+
+    <div class="img-grid">
+      <div class="img-card">
+        <img src="IMG_1933.jpg" alt="Celia 玩街機節奏遊戲">
+        <div class="caption">🕹️ 靈感來源 — Celia 平常最愛玩的節奏遊戲機台</div>
+      </div>
+      <div class="img-card">
+        <img src="IMG_2586.jpg" alt="Celia 在機場玩喵狗節奏大師">
+        <div class="caption">💻 成果 — Celia 在函館機場試玩「喵狗節奏大師」</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Celia 的手繪 -->
+  <div class="section">
+    <h2><span class="emoji">🎨</span> Celia 的手繪原稿</h2>
+    <p>遊戲中的兩位主角，全部出自 Celia 之手。用鉛筆畫在紙上，認認真真地畫了貓咪的鬍鬚和小狗的耳朵。</p>
+    <div class="img-grid">
+      <div class="img-card">
+        <img src="IMG_2573.jpg" alt="Celia 手繪的貓咪">
+        <div class="caption">🐱 Celia 畫的貓咪</div>
+      </div>
+      <div class="img-card">
+        <img src="IMG_2574.jpg" alt="Celia 手繪的小狗">
+        <div class="caption">🐶 Celia 畫的小狗</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- AI 生成序列圖 -->
+  <div class="section">
+    <h2><span class="emoji">🤖</span> 從手繪到遊戲角色</h2>
+    <p>把 Celia 的手繪交給 AI（Nano Banana），生成不同動作的序列圖 — 搖擺、點頭、比讚。每個動作 8 幀，構成流暢的動畫。</p>
+
+    <div class="img-grid">
+      <div class="img-card">
+        <img src="IMG_2579.PNG" alt="貓咪 A 動作序列圖">
+        <div class="caption">🐱 貓咪角色 — 3 組動作序列</div>
+      </div>
+      <div class="img-card">
+        <img src="IMG_2576.PNG" alt="狗狗動作序列圖">
+        <div class="caption">🐶 狗狗角色 — 3 組動作序列</div>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;">每組動作 8 幀，在遊戲中流暢播放：</p>
+
+    <h3 style="margin:20px 0 8px; color:#555;">🐱 喵 — 搖擺動畫</h3>
+    <div class="sprite-row">
+      <div><img src="cat_A_frames/catA_sway_F01.png" alt="F1"><div class="sprite-label">F1</div></div>
+      <div><img src="cat_A_frames/catA_sway_F02.png" alt="F2"><div class="sprite-label">F2</div></div>
+      <div><img src="cat_A_frames/catA_sway_F03.png" alt="F3"><div class="sprite-label">F3</div></div>
+      <div><img src="cat_A_frames/catA_sway_F04.png" alt="F4"><div class="sprite-label">F4</div></div>
+      <div><img src="cat_A_frames/catA_sway_F05.png" alt="F5"><div class="sprite-label">F5</div></div>
+      <div><img src="cat_A_frames/catA_sway_F06.png" alt="F6"><div class="sprite-label">F6</div></div>
+      <div><img src="cat_A_frames/catA_sway_F07.png" alt="F7"><div class="sprite-label">F7</div></div>
+      <div><img src="cat_A_frames/catA_sway_F08.png" alt="F8"><div class="sprite-label">F8</div></div>
+    </div>
+
+    <h3 style="margin:20px 0 8px; color:#555;">🐶 狗 — 搖擺動畫</h3>
+    <div class="sprite-row">
+      <div><img src="cat_B_frames/catB_sway_F01.png" alt="F1"><div class="sprite-label">F1</div></div>
+      <div><img src="cat_B_frames/catB_sway_F02.png" alt="F2"><div class="sprite-label">F2</div></div>
+      <div><img src="cat_B_frames/catB_sway_F03.png" alt="F3"><div class="sprite-label">F3</div></div>
+      <div><img src="cat_B_frames/catB_sway_F04.png" alt="F4"><div class="sprite-label">F4</div></div>
+      <div><img src="cat_B_frames/catB_sway_F05.png" alt="F5"><div class="sprite-label">F5</div></div>
+      <div><img src="cat_B_frames/catB_sway_F06.png" alt="F6"><div class="sprite-label">F6</div></div>
+      <div><img src="cat_B_frames/catB_sway_F07.png" alt="F7"><div class="sprite-label">F7</div></div>
+      <div><img src="cat_B_frames/catB_sway_F08.png" alt="F8"><div class="sprite-label">F8</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 遊戲介紹 -->
+  <div class="section">
+    <h2><span class="emoji">🎮</span> 遊戲玩法</h2>
+    <p>模擬湯姆熊街機的節奏遊戲體驗！投幣、選歌、跟著節拍按鍵，還有結算評分。</p>
+
+    <div class="features">
+      <div class="feature-card">
+        <div class="icon">🪙</div>
+        <h3>投幣開始</h3>
+        <p>按空白鍵投幣，像真的街機一樣</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎶</div>
+        <h3>5 首歌曲</h3>
+        <p>小星星、小蜜蜂、兩隻老虎，還有吉伊卡哇的兩首歌（MP3 真實音樂）</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⬅️ ➡️</div>
+        <h3>雙軌操作</h3>
+        <p>左箭頭控制喵、右箭頭控制狗，跟著節奏一起打！</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">✨</div>
+        <h3>豐富回饋</h3>
+        <p>Perfect / Great / Good 判定、Combo 連擊、粒子特效、螢幕震動</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 遊戲畫面 -->
+  <div class="section">
+    <h2><span class="emoji">📸</span> 遊戲畫面</h2>
+    <p>從投幣到結算，完整的街機體驗流程。</p>
+
+    <div class="screenshot-grid">
+      <div class="screenshot-card">
+        <img src="IMG_2575.PNG" alt="角色序列圖 A">
+        <div class="label">角色動作設計 A</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="IMG_2576.PNG" alt="角色序列圖 B">
+        <div class="label">角色動作設計 B</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="IMG_2578.PNG" alt="角色序列圖 C">
+        <div class="label">角色動作設計 C</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="IMG_2579.PNG" alt="角色序列圖 D">
+        <div class="label">角色動作設計 D</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 創作時間線 -->
+  <div class="section">
+    <h2><span class="emoji">⏱️</span> 創作時間線</h2>
+    <p>2026 年 4 月 3 日，在北海道函館機場，因為班機延誤而展開的創作之旅。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">13:00 — 班機延誤</div>
+        <div class="event">在函館機場等飛機，Celia 提議「爸爸，我們來做遊戲！」</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">13:10 — 手繪角色</div>
+        <div class="event">Celia 拿起鉛筆在紙上畫了一隻貓和一隻狗，作為遊戲主角</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">13:30 — AI 生成序列圖</div>
+        <div class="event">用 Nano Banana 把手繪轉成遊戲角色，生成搖擺、點頭、比讚三組動作，每組 8 幀</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">13:50 — 遊戲開發啟動</div>
+        <div class="event">用 Claude Code 建立遊戲框架：投幣頁、選歌頁、遊戲頁、結算頁，完整四頁流程</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">14:20 — 節奏核心完成</div>
+        <div class="event">實作音符下落、判定系統（Perfect / Great / Good）、Combo 連擊、5 首歌曲的合成器旋律</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">14:40 — 角色動畫上線</div>
+        <div class="event">將 Celia 設計的角色序列圖放進遊戲，打到音符時角色會點頭、比讚，還有愛心和星星粒子特效</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">15:00 — 視覺回饋打磨</div>
+        <div class="event">白色清爽背景、打擊感強化 — 螢幕震動、軌道閃光、判定線脈衝、按鍵彈跳、Combo 動畫</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">15:20 — MP3 音樂整合</div>
+        <div class="event">導入吉伊卡哇兩首歌的 MP3（睡衣派對之歌、自言自語），用 Web Audio API 自動分析節拍生成 beatmap</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">15:40 — 排行榜上線</div>
+        <div class="event">加入每首歌獨立的排行榜系統，本機 localStorage 儲存，前 10 名紀錄</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">16:00 — Celia 試玩！🎉</div>
+        <div class="event">5 首歌、2 個角色、排行榜、完整街機體驗的節奏遊戲，在等飛機的時間內完成。Celia 玩得超開心！</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 技術 -->
+  <div class="section">
+    <h2><span class="emoji">🛠️</span> 技術細節</h2>
+    <p>純前端實作，不依賴任何框架，用瀏覽器就能玩。</p>
+    <div class="tech-tags">
+      <span class="tech-tag">HTML / CSS / JavaScript</span>
+      <span class="tech-tag">Web Audio API</span>
+      <span class="tech-tag">requestAnimationFrame</span>
+      <span class="tech-tag">CSS Animations</span>
+      <span class="tech-tag">MP3 節拍偵測</span>
+      <span class="tech-tag">Sprite 序列動畫</span>
+      <span class="tech-tag">Claude Code</span>
+      <span class="tech-tag">Nano Banana</span>
+    </div>
+    <p style="margin-top: 16px;">
+      合成器旋律（小星星、小蜜蜂、兩隻老虎）使用 Web Audio API 即時生成。<br>
+      吉伊卡哇的兩首歌使用 MP3 播放，並透過能量分析演算法自動偵測節拍，生成 beatmap。<br>
+      角色動畫由 8 幀序列圖驅動，打擊時觸發反應動畫 + 粒子特效。
+    </p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CTA -->
+  <div class="section" style="text-align: center; padding: 60px 24px;">
+    <h2 style="justify-content: center;"><span class="emoji">🎵</span> 來玩吧！</h2>
+    <p style="margin-bottom: 24px;">投個幣，選首歌，跟著喵和狗一起打節奏！</p>
+    <a href="game.html" class="play-btn" style="display:inline-block; padding:16px 48px; background:#e94560; color:#fff; font-size:1.3rem; font-weight:bold; border-radius:50px; text-decoration:none; box-shadow:0 6px 20px rgba(233,69,96,0.35);">🎮 開始遊戲</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>🐱🐶 喵狗節奏大師 — Created by Celia & 爸爸 @ 函館機場</p>
+    <p style="margin-top: 8px;">2026.04.03 ｜ Powered by <a href="#">Claude Code</a> + Nano Banana + 愛</p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>喵狗節奏大師</title>
+  <link rel="stylesheet" href="css/style.css?v=6">
+</head>
+<body>
+  <!-- 投幣頁 -->
+  <div id="coin-page" class="page active">
+    <div class="coin-container">
+      <h1 class="game-title">🎵 喵狗節奏大師 🎵</h1>
+      <div class="coin-display">
+        <span class="coin-icon">🪙</span>
+        <span id="coin-count">0</span>
+      </div>
+      <p class="blink-text">INSERT COIN TO START</p>
+      <div class="coin-buttons">
+        <button id="btn-make-coin" class="btn btn-coin">製造代幣</button>
+        <button id="btn-start" class="btn btn-start" disabled>START</button>
+      </div>
+      <p class="hint-text">按空白鍵投幣 或 點擊「製造代幣」</p>
+    </div>
+  </div>
+
+  <!-- 選歌頁 -->
+  <div id="select-page" class="page">
+    <h2 class="select-title">🎶 選擇歌曲 🎶</h2>
+    <div class="song-carousel-wrapper">
+      <div class="song-carousel" id="song-carousel"></div>
+    </div>
+    <div class="select-controls">
+      <span class="key-hint">← 左鍵</span>
+      <button id="btn-confirm-song" class="btn btn-confirm">確認選擇 (Enter)</button>
+      <span class="key-hint">右鍵 →</span>
+    </div>
+  </div>
+
+  <!-- 遊戲頁 -->
+  <div id="game-page" class="page">
+    <div class="game-hud">
+      <div class="hud-left">
+        <span id="hud-song-name"></span>
+      </div>
+      <div class="hud-center">
+        <div class="score-display">SCORE: <span id="hud-score">0</span></div>
+        <div class="combo-display" id="hud-combo"></div>
+      </div>
+      <div class="hud-right">
+        <span id="hud-time">0:00 / 0:00</span>
+      </div>
+    </div>
+    <div class="game-area">
+      <!-- 左側：喵 (cat_A) -->
+      <div class="lane-section lane-left">
+        <div class="character cat-character" id="char-cat">
+          <img class="char-sprite" id="sprite-cat" src="cat_A_frames/catA_sway_F01.png" alt="喵">
+          <div class="char-effect" id="effect-cat"></div>
+          <div class="char-label">喵</div>
+        </div>
+        <div class="lane" id="lane-0">
+          <div class="lane-bg"></div>
+          <div class="hit-line"></div>
+          <div class="judge-text" id="judge-0"></div>
+          <div class="key-indicator">←</div>
+        </div>
+      </div>
+      <!-- 右側：狗 (cat_B) -->
+      <div class="lane-section lane-right">
+        <div class="lane" id="lane-1">
+          <div class="lane-bg"></div>
+          <div class="hit-line"></div>
+          <div class="judge-text" id="judge-1"></div>
+          <div class="key-indicator">→</div>
+        </div>
+        <div class="character dog-character" id="char-dog">
+          <img class="char-sprite" id="sprite-dog" src="cat_B_frames/catB_sway_F01.png" alt="狗">
+          <div class="char-effect" id="effect-dog"></div>
+          <div class="char-label">狗</div>
+        </div>
+      </div>
+    </div>
+    <div class="countdown-overlay" id="countdown-overlay">
+      <span id="countdown-text"></span>
+    </div>
+  </div>
+
+  <!-- 結算頁 -->
+  <div id="result-page" class="page">
+    <div class="result-container">
+      <h2 class="result-title">🎵 結算 🎵</h2>
+      <div class="result-song" id="result-song"></div>
+      <div class="result-grade" id="result-grade"></div>
+      <div class="result-score">總分：<span id="result-score-num"></span></div>
+      <div class="result-stats">
+        <div class="stat-row perfect">Perfect: <span id="result-perfect">0</span></div>
+        <div class="stat-row great">Great: <span id="result-great">0</span></div>
+        <div class="stat-row good">Good: <span id="result-good">0</span></div>
+        <div class="stat-row max-combo">Max Combo: <span id="result-max-combo">0</span></div>
+      </div>
+      <div class="leaderboard">
+        <h3 class="lb-title">🏆 排行榜</h3>
+        <div class="lb-list" id="leaderboard-list"></div>
+      </div>
+      <div class="result-buttons">
+        <button id="btn-retry" class="btn btn-confirm">再玩一次</button>
+        <button id="btn-back-select" class="btn btn-coin">回選歌頁</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/audio.js?v=6"></script>
+  <script src="js/songs.js?v=6"></script>
+  <script src="js/sprite.js?v=6"></script>
+  <script src="js/game.js?v=6"></script>
+  <script src="js/main.js?v=6"></script>
+</body>
+</html>
