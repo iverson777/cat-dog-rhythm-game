@@ -11,13 +11,13 @@ https://iverson777.github.io/cat-dog-rhythm-game/
 
 ## About
 
-Celia drew the two characters (cat & dog) on paper. The drawings were then transformed into sprite animations using AI. The game was built with pure HTML/CSS/JavaScript — no frameworks, no build tools.
+Celia drew the two characters (tabby cat & orange cat) on paper. The drawings were then transformed into sprite animations using AI. The game was built with pure HTML/CSS/JavaScript — no frameworks, no build tools.
 
 Players tap left/right arrows (or touch buttons on mobile) to hit notes in sync with the music. Each hit triggers character animations and emoji particle effects.
 
 ## Features
 
-- Two-lane rhythm gameplay (cat lane & dog lane)
+- Two-lane rhythm gameplay (tabby cat & orange cat)
 - Hand-drawn characters with 3 sprite animations each (sway, nod, thumbs-up)
 - MP3 playback with automatic beat detection (Web Audio API)
 - Built-in songs + Chiikawa theme songs
