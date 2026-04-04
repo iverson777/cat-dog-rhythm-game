@@ -7,612 +7,884 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fafaf8;
-      --bg-alt: #f3f2ee;
-      --text: #1a1a1a;
-      --text-secondary: #6b6b6b;
-      --text-muted: #9e9e9e;
-      --accent: #d4553a;
-      --accent-light: #fef0ed;
-      --accent-hover: #c04430;
-      --border: #e8e6e1;
-      --card: #ffffff;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
-      --radius: 12px;
-      --radius-lg: 20px;
+      --coral: #E07B5F;
+      --coral-light: #F4A89A;
+      --coral-bg: #FDEAE5;
+      --teal: #5BA4B5;
+      --teal-light: #A1D6E2;
+      --teal-bg: #E1F3F8;
+      --green: #5EBB73;
+      --green-light: #A3DDB3;
+      --green-bg: #E2F5E8;
+      --charcoal: #2D3436;
+      --charcoal-light: #4A4E50;
+      --cream: #FDF6F0;
+      --cream-dark: #F5EDE4;
+      --white: #FFFFFF;
+      --text: #2D3436;
+      --text-secondary: #636E72;
+      --text-muted: #9CA3A8;
+      --border: #E0D6CC;
+      --radius: 20px;
+      --radius-sm: 14px;
+      --radius-xs: 10px;
+      --shadow-clay: 6px 6px 12px rgba(0,0,0,0.08), -2px -2px 8px rgba(255,255,255,0.9), inset 1px 1px 2px rgba(255,255,255,0.6);
+      --shadow-clay-sm: 4px 4px 8px rgba(0,0,0,0.06), -1px -1px 4px rgba(255,255,255,0.8), inset 1px 1px 1px rgba(255,255,255,0.5);
+      --shadow-clay-hover: 8px 8px 16px rgba(0,0,0,0.1), -3px -3px 10px rgba(255,255,255,0.95), inset 1px 1px 2px rgba(255,255,255,0.7);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
-      background: var(--bg);
+      font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+      background: var(--cream);
       color: var(--text);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Hero */
+    h1, h2, h3 {
+      font-family: 'Fredoka', 'Noto Sans TC', sans-serif;
+      color: var(--charcoal);
+    }
+
+    /* ===== Nav ===== */
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 3px solid var(--border);
+      border-radius: 60px;
+      padding: 10px 10px 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-clay);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 30px;
+      transition: color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover {
+      color: var(--charcoal);
+      background: var(--cream-dark);
+    }
+    .btn-nav-cta {
+      background: var(--green) !important;
+      color: #fff !important;
+      font-weight: 700 !important;
+      padding: 10px 22px !important;
+      border: 3px solid #4AA862 !important;
+      box-shadow: var(--shadow-clay-sm);
+    }
+    .btn-nav-cta:hover {
+      background: #4AA862 !important;
+      transform: translateY(-1px);
+    }
+
+    /* ===== Hero ===== */
     .hero {
-      background: #1a1a1a;
-      color: #fff;
-      text-align: center;
-      padding: 100px 24px 80px;
-      position: relative;
-      overflow: hidden;
+      padding: 140px 24px 60px;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(212,85,58,0.15) 0%, transparent 60%),
-                  radial-gradient(ellipse at 80% 100%, rgba(74,125,255,0.08) 0%, transparent 50%);
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
     .hero-badge {
       display: inline-block;
-      padding: 6px 16px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 18px;
+      background: var(--green-bg);
+      border: 2px solid var(--green-light);
       border-radius: 100px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 28px;
-      letter-spacing: 0.5px;
+      font-size: 0.82rem;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 24px;
     }
     .hero h1 {
-      font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
-      font-size: 3.4rem;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
       font-weight: 700;
-      line-height: 1.15;
+      line-height: 1.25;
       margin-bottom: 16px;
-      letter-spacing: -1px;
+      color: var(--charcoal);
     }
-    .hero .subtitle {
-      font-size: 1.15rem;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 36px;
-      font-weight: 300;
+    .hero h1 em {
+      font-style: italic;
+      color: var(--coral);
     }
-    .btn-primary {
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 560px;
+      line-height: 1.8;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 36px;
-      background: var(--accent);
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 100px;
+      padding: 14px 28px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 50px;
       text-decoration: none;
-      transition: all 0.2s ease;
-      border: none;
+      border: 3px solid transparent;
       cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: #fff;
+      border-color: #4AA862;
+      box-shadow: var(--shadow-clay-sm);
     }
     .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(212,85,58,0.3);
+      background: #4AA862;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-clay-hover);
     }
-    .hero-hint {
-      margin-top: 16px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
+    .btn-secondary {
+      background: var(--white);
+      color: var(--charcoal);
+      border-color: var(--border);
+      box-shadow: var(--shadow-clay-sm);
+    }
+    .btn-secondary:hover {
+      background: var(--cream-dark);
+      transform: translateY(-2px);
+    }
+    .btn-coral {
+      background: var(--coral);
+      color: #fff;
+      border-color: #C8694F;
+      box-shadow: var(--shadow-clay-sm);
+    }
+    .btn-coral:hover {
+      background: #C8694F;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-clay-hover);
     }
 
-    /* Section */
-    .section {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 72px 24px;
-    }
-    .section-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.75rem;
+    .hero-hint {
+      margin-top: 20px;
+      font-size: 0.82rem;
+      color: var(--coral);
       font-weight: 600;
+    }
+
+    /* Hero right illustration */
+    .hero-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 140px 24px 60px;
+    }
+    .hero-content { flex: 1; }
+    .hero-visual {
+      flex: 0 0 320px;
+      position: relative;
+    }
+    .hero-card {
+      background: var(--white);
+      border: 3px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow-clay);
+    }
+    .hero-card-inner {
+      background: var(--green-bg);
+      border: 2px solid var(--green-light);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+    }
+    .hero-card-inner img {
+      width: 80px;
+      height: auto;
+      margin-bottom: 8px;
+    }
+    .progress-bar {
+      height: 8px;
+      background: var(--cream-dark);
+      border-radius: 100px;
+      margin: 12px 0;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--green);
+      border-radius: 100px;
+      width: 65%;
+    }
+
+    /* Stats inline */
+    .stats {
+      display: flex;
+      gap: 32px;
+      padding: 32px 0;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .stat { text-align: left; }
+    .stat-num {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* ===== Sections ===== */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .section-divider {
+      max-width: 1000px;
+      margin: 0 auto;
+      border: none;
+      height: 3px;
+      background: var(--cream-dark);
+      border-radius: 2px;
+    }
+
+    .section-header { margin-bottom: 36px; }
+    .section-label {
+      display: inline-block;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--accent);
-      margin-bottom: 12px;
+      letter-spacing: 1.5px;
+      color: var(--coral);
+      background: var(--coral-bg);
+      border: 2px solid var(--coral-light);
+      padding: 4px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .section-label-teal {
+      color: var(--teal);
+      background: var(--teal-bg);
+      border-color: var(--teal-light);
+    }
+    .section-label-green {
+      color: var(--green);
+      background: var(--green-bg);
+      border-color: var(--green-light);
     }
     .section h2 {
-      font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
       font-weight: 700;
-      color: var(--text);
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
-      line-height: 1.3;
+      margin-bottom: 8px;
     }
-    .section > p {
-      font-size: 1.05rem;
+    .section-desc {
+      font-size: 1rem;
       color: var(--text-secondary);
-      margin-bottom: 16px;
-      max-width: 620px;
+      max-width: 560px;
+      line-height: 1.7;
     }
 
-    /* Divider */
-    .divider {
-      border: none;
-      height: 1px;
-      background: var(--border);
-      max-width: 860px;
-      margin: 0 auto;
+    /* ===== Clay Card ===== */
+    .clay-card {
+      background: var(--white);
+      border: 3px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-clay);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .clay-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-clay-hover);
     }
 
-    /* Story block */
+    /* ===== Story ===== */
     .story-block {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px 36px;
-      margin: 28px 0;
-      font-size: 1.05rem;
+      background: var(--white);
+      border: 3px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 28px;
+      font-size: 1rem;
       color: var(--text-secondary);
       line-height: 2;
+      box-shadow: var(--shadow-clay);
     }
-    .story-block .quote {
+    .story-quote {
       display: block;
       margin: 16px 0;
       padding-left: 20px;
-      border-left: 3px solid var(--accent);
-      color: var(--text);
-      font-weight: 500;
+      border-left: 4px solid var(--coral);
+      color: var(--charcoal);
+      font-weight: 700;
       font-style: italic;
+      font-size: 1.1rem;
     }
 
-    /* Image grid */
+    /* ===== Image Grid ===== */
     .img-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      margin: 28px 0;
     }
     .img-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: var(--white);
+      border: 3px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: var(--shadow-clay);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
     }
     .img-card:hover {
       transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-clay-hover);
     }
     .img-card img { width: 100%; display: block; }
-    .img-card .caption {
+    .img-card figcaption {
       padding: 14px 16px;
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: var(--text-secondary);
+      font-weight: 600;
     }
 
-    /* Sprite showcase */
-    .sprite-section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin: 28px 0 12px;
+    /* ===== Sprites ===== */
+    .sprite-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 28px 0 10px;
     }
     .sprite-row {
       display: flex;
       gap: 6px;
       justify-content: center;
-      align-items: flex-end;
       flex-wrap: wrap;
-      padding: 24px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      padding: 20px;
+      background: var(--white);
+      border: 3px solid var(--border);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-clay-sm);
     }
-    .sprite-row img { width: 64px; height: auto; }
+    .sprite-frame { text-align: center; }
+    .sprite-frame img { width: 56px; height: auto; }
     .sprite-label {
-      text-align: center;
-      font-size: 0.7rem;
+      font-family: 'Fredoka', monospace;
+      font-size: 0.62rem;
       color: var(--text-muted);
-      margin-top: 6px;
-      font-family: 'Space Grotesk', monospace;
+      margin-top: 4px;
+      font-weight: 600;
     }
 
-    /* Features */
+    /* ===== Features ===== */
     .features-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin: 28px 0;
+      gap: 20px;
     }
     .feature-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: var(--white);
+      border: 3px solid var(--border);
       border-radius: var(--radius);
       padding: 28px;
-      transition: box-shadow 0.2s ease;
+      box-shadow: var(--shadow-clay);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
     }
-    .feature-card:hover { box-shadow: var(--shadow-md); }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-clay-hover);
+    }
     .feature-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--accent-light);
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
       margin-bottom: 16px;
+      border: 2px solid transparent;
+      box-shadow: var(--shadow-clay-sm);
     }
-    .feature-card h3 {
-      font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 6px;
+    .feature-icon-coral {
+      background: var(--coral-bg);
+      border-color: var(--coral-light);
     }
-    .feature-card p { font-size: 0.88rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+    .feature-icon-teal {
+      background: var(--teal-bg);
+      border-color: var(--teal-light);
+    }
+    .feature-icon-green {
+      background: var(--green-bg);
+      border-color: var(--green-light);
+    }
+    .feature-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .feature-icon-coral svg { stroke: var(--coral); }
+    .feature-icon-teal svg { stroke: var(--teal); }
+    .feature-icon-green svg { stroke: var(--green); }
+    .feature-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .feature-card p { font-size: 0.88rem; color: var(--text-muted); margin: 0; line-height: 1.6; }
 
-    /* Game embed */
+    /* ===== Game Embed ===== */
     .game-embed {
       max-width: 420px;
-      margin: 28px auto;
-      border-radius: var(--radius-lg);
+      margin: 28px auto 0;
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border);
+      border: 3px solid var(--border);
+      box-shadow: var(--shadow-clay);
+      background: var(--white);
     }
     .game-embed iframe { width: 100%; height: 680px; border: none; display: block; }
-    .game-embed-hint {
-      text-align: center;
-      margin-top: 12px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
+    .embed-hint { text-align: center; margin-top: 12px; font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
 
-    /* Timeline */
-    .timeline { padding-left: 32px; margin: 28px 0; position: relative; }
+    /* ===== Timeline ===== */
+    .timeline { padding-left: 28px; margin-top: 28px; position: relative; }
     .timeline::before {
       content: '';
       position: absolute;
-      left: 7px;
+      left: 5px;
       top: 8px;
       bottom: 8px;
-      width: 2px;
-      background: var(--border);
+      width: 3px;
+      background: var(--cream-dark);
+      border-radius: 2px;
     }
-    .timeline-item {
+    .tl-item {
       position: relative;
       margin-bottom: 24px;
-      padding-left: 20px;
+      padding-left: 24px;
     }
-    .timeline-item::before {
+    .tl-item::before {
       content: '';
       position: absolute;
-      left: -29px;
+      left: -27px;
       top: 8px;
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 0 3px var(--accent-light);
+      background: var(--coral);
+      border: 3px solid var(--coral-light);
+      box-shadow: 0 0 0 4px var(--coral-bg);
     }
-    .timeline-item .time {
-      font-family: 'Space Grotesk', monospace;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--accent);
+    .tl-time {
+      font-family: 'Fredoka', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--coral);
       margin-bottom: 2px;
     }
-    .timeline-item .event { font-size: 0.95rem; color: var(--text-secondary); }
+    .tl-event { font-size: 0.92rem; color: var(--text-secondary); }
 
-    /* Tech tags */
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+    /* ===== Tech Tags ===== */
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
     .tech-tag {
-      padding: 6px 14px;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
+      padding: 8px 16px;
+      background: var(--white);
+      border: 2px solid var(--border);
       border-radius: 100px;
       font-size: 0.82rem;
       color: var(--text-secondary);
-      font-weight: 500;
+      font-weight: 600;
+      box-shadow: var(--shadow-clay-sm);
     }
 
-    /* Roadmap */
+    /* ===== Roadmap ===== */
     .roadmap-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      margin: 28px 0;
+      gap: 20px;
     }
     .roadmap-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: var(--white);
+      border: 3px solid var(--border);
       border-radius: var(--radius);
       padding: 24px;
+      box-shadow: var(--shadow-clay);
     }
     .roadmap-card h3 {
-      font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 14px;
+      font-size: 1rem;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .roadmap-card ul {
-      list-style: none;
-      padding: 0;
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      line-height: 1.9;
+    .roadmap-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+    .roadmap-icon-coral { background: var(--coral-bg); }
+    .roadmap-icon-teal { background: var(--teal-bg); }
+    .roadmap-icon-green { background: var(--green-bg); }
+    .roadmap-card ul { list-style: none; font-size: 0.88rem; color: var(--text-secondary); line-height: 2; }
+    .roadmap-card li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .roadmap-card li::before {
       content: '';
-      display: inline-block;
+      display: block;
       width: 14px;
       height: 14px;
+      min-width: 14px;
       border: 2px solid var(--border);
-      border-radius: 3px;
-      margin-right: 8px;
-      vertical-align: middle;
-      position: relative;
-      top: -1px;
+      border-radius: 4px;
+      background: var(--cream);
     }
 
-    /* CTA */
-    .cta {
+    /* ===== CTA ===== */
+    .cta-section {
       text-align: center;
-      padding: 80px 24px;
-      background: var(--bg-alt);
+      padding: 72px 24px;
+      background: var(--charcoal);
+      border-radius: 32px 32px 0 0;
+      margin-top: 32px;
     }
-    .cta h2 {
-      font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+    .cta-section h2 {
+      font-family: 'Fredoka', 'Noto Sans TC', sans-serif;
       font-size: 2rem;
       font-weight: 700;
-      color: var(--text);
+      color: #fff;
       margin-bottom: 12px;
     }
-    .cta p { color: var(--text-secondary); margin-bottom: 28px; font-size: 1.05rem; }
-    .cta-hint { margin-top: 14px; font-size: 0.8rem; color: var(--text-muted); }
+    .cta-section p { color: rgba(255,255,255,0.7); margin-bottom: 28px; font-size: 1.05rem; }
+    .cta-hint { margin-top: 16px; font-size: 0.82rem; color: rgba(255,255,255,0.4); }
 
-    /* Footer */
-    .footer {
+    /* ===== Footer ===== */
+    footer {
       text-align: center;
-      padding: 40px 24px;
-      border-top: 1px solid var(--border);
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      padding: 32px 24px;
+      background: var(--charcoal);
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
     }
-    .footer a { color: var(--accent); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
+    footer a { color: var(--coral-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    /* Responsive */
-    @media (max-width: 640px) {
-      .hero { padding: 72px 20px 56px; }
-      .hero h1 { font-size: 2.2rem; }
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      nav { top: 8px; left: 8px; right: 8px; padding: 8px 8px 8px 16px; }
+      .nav-links a:not(.btn-nav-cta) { display: none; }
+      .hero-wrapper { flex-direction: column; padding: 120px 16px 40px; gap: 24px; }
+      .hero-visual { flex: none; width: 100%; max-width: 280px; }
+      .hero { padding: 120px 16px 48px; }
       .section { padding: 48px 16px; }
-      .section h2 { font-size: 1.6rem; }
       .img-grid, .features-grid { grid-template-columns: 1fr; }
       .roadmap-grid { grid-template-columns: 1fr; }
-      .sprite-row img { width: 44px; }
-      .story-block { padding: 24px 20px; }
+      .stats { gap: 20px; flex-wrap: wrap; }
+      .stat-num { font-size: 1.3rem; }
+      .story-block { padding: 20px; }
+      .sprite-frame img { width: 40px; }
+      .cta-section { border-radius: 24px 24px 0 0; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Nav -->
+  <nav>
+    <a href="#" class="nav-logo">喵狗節奏大師</a>
+    <div class="nav-links">
+      <a href="#story">故事</a>
+      <a href="#gameplay">玩法</a>
+      <a href="#timeline">時間線</a>
+      <a href="game.html" class="btn-nav-cta">開始遊戲</a>
+    </div>
+  </nav>
+
   <!-- Hero -->
-  <div class="hero">
+  <div class="hero-wrapper">
     <div class="hero-content">
-      <div class="hero-badge">2026.04.03 / 北海道・函館機場</div>
-      <h1>喵狗節奏大師</h1>
-      <p class="subtitle">一個爸爸和女兒在機場等飛機時，一起做出來的節奏遊戲</p>
-      <a href="game.html" class="btn-primary">開始遊戲 →</a>
+      <div class="hero-badge">2026.04.03 ／ 北海道・函館機場</div>
+      <h1>爸爸和女兒<br>在等飛機時，<br><em>一起做出來的</em><br>節奏遊戲！</h1>
+      <p class="hero-sub">Celia 畫角色、爸爸寫程式，不到三小時完成一款有投幣、選歌、打節拍的完整街機遊戲。</p>
+      <div class="hero-buttons">
+        <a href="game.html" class="btn btn-primary">開始遊戲 →</a>
+        <a href="#story" class="btn btn-secondary">看創作故事</a>
+      </div>
       <p class="hero-hint">請先關閉手機靜音，才能聽到音樂</p>
     </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-inner">
+          <img src="cat_A_frames/catA_sway_F01.png" alt="虎斑喵">
+          <img src="cat_B_frames/catB_sway_F01.png" alt="橘喵">
+          <div style="font-size:0.82rem;color:var(--text-secondary);font-weight:600;margin-top:8px;">虎斑喵 & 橘喵</div>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+          <div style="font-size:0.75rem;color:var(--green);font-weight:700;text-align:right;">遊戲進度 65%</div>
+        </div>
+        <div style="margin-top:14px;background:var(--green);color:#fff;text-align:center;padding:12px;border-radius:var(--radius-sm);font-weight:700;font-size:0.9rem;border:2px solid #4AA862;cursor:pointer;">繼續遊玩</div>
+      </div>
+    </div>
   </div>
 
-  <hr class="divider">
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">首歌曲</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-label">手繪角色</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3hr</div>
+      <div class="stat-label">完成時間</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">48</div>
+      <div class="stat-label">動畫幀數</div>
+    </div>
+  </div>
 
-  <!-- 故事 -->
-  <div class="section">
-    <div class="section-label">The Story</div>
-    <h2>創作故事</h2>
+  <hr class="section-divider">
+
+  <!-- Story -->
+  <div class="section" id="story">
+    <div class="section-header">
+      <div class="section-label">The Story</div>
+      <h2>創作故事</h2>
+    </div>
+
     <div class="story-block">
-      班機延誤，在函館機場等飛機的午後。<br>
-      Celia 最近迷上了吉伊卡哇（ちいかわ），走到哪唱到哪。她也很愛玩湯姆熊那種節奏遊戲機台。
-      <span class="quote">「爸爸，我們來做一個節奏遊戲好不好？」</span>
-      於是，一張紙、一支筆、一台筆電，父女倆的即興創作就這樣開始了。<br>
-      Celia 負責畫角色 — 一隻虎斑喵和一隻橘喵；爸爸負責用 AI 把手繪變成遊戲角色，再用 Claude Code 寫出整個遊戲。<br><br>
-      不到一個下午，一款有投幣、選歌、打節拍、放 MP3 真實音樂的完整節奏遊戲就誕生了。
+      班機延誤，在函館機場等飛機的午後。Celia 最近迷上了吉伊卡哇（ちいかわ），走到哪唱到哪。她也很愛玩湯姆熊那種節奏遊戲機台。
+      <span class="story-quote">「爸爸，我們來做一個節奏遊戲好不好？」</span>
+      於是，一張紙、一支筆、一台筆電，父女倆的即興創作就這樣開始了。Celia 負責畫角色 — 一隻虎斑喵和一隻橘喵；爸爸負責用 AI 把手繪變成遊戲角色，再用 Claude Code 寫出整個遊戲。不到一個下午，一款完整節奏遊戲就誕生了。
     </div>
 
     <div class="img-grid">
-      <div class="img-card">
+      <figure class="img-card">
         <img src="IMG_1933.jpg" alt="Celia 玩街機節奏遊戲">
-        <div class="caption">靈感來源 — Celia 平常最愛玩的節奏遊戲機台</div>
-      </div>
-      <div class="img-card">
-        <img src="IMG_2586.jpg" alt="Celia 在機場玩喵狗節奏大師">
-        <div class="caption">成果 — Celia 在函館機場試玩喵狗節奏大師</div>
-      </div>
+        <figcaption>靈感來源 — Celia 平常最愛玩的節奏遊戲機台</figcaption>
+      </figure>
+      <figure class="img-card">
+        <img src="IMG_2586.jpg" alt="Celia 在機場試玩喵狗節奏大師">
+        <figcaption>成果 — Celia 在函館機場試玩喵狗節奏大師</figcaption>
+      </figure>
     </div>
   </div>
 
-  <hr class="divider">
+  <hr class="section-divider">
 
-  <!-- Celia 的手繪 -->
+  <!-- Hand-drawn -->
   <div class="section">
-    <div class="section-label">Original Artwork</div>
-    <h2>Celia 的手繪原稿</h2>
-    <p>遊戲中的兩位主角，全部出自 Celia 之手。用鉛筆畫在紙上，認認真真地畫了虎斑喵的花紋和橘喵的耳朵。</p>
+    <div class="section-header">
+      <div class="section-label section-label-teal">Original Artwork</div>
+      <h2>Celia 的手繪原稿</h2>
+      <p class="section-desc">遊戲中的兩位主角，全部出自 Celia 之手。用鉛筆畫在紙上，認認真真地畫了虎斑喵的花紋和橘喵的耳朵。</p>
+    </div>
     <div class="img-grid">
-      <div class="img-card">
+      <figure class="img-card">
         <img src="IMG_2573.jpg" alt="Celia 手繪的虎斑喵">
-        <div class="caption">Celia 畫的虎斑喵</div>
-      </div>
-      <div class="img-card">
+        <figcaption>虎斑喵 — Celia 的手繪原稿</figcaption>
+      </figure>
+      <figure class="img-card">
         <img src="IMG_2574.jpg" alt="Celia 手繪的橘喵">
-        <div class="caption">Celia 畫的橘喵</div>
-      </div>
+        <figcaption>橘喵 — Celia 的手繪原稿</figcaption>
+      </figure>
     </div>
   </div>
 
-  <hr class="divider">
+  <hr class="section-divider">
 
-  <!-- AI 生成序列圖 -->
+  <!-- Sprites -->
   <div class="section">
-    <div class="section-label">AI Sprite Generation</div>
-    <h2>從手繪到遊戲角色</h2>
-    <p>把 Celia 的手繪交給 AI（Nano Banana），生成不同動作的序列圖 — 搖擺、點頭、比讚。每個動作 8 幀，構成流暢的動畫。</p>
+    <div class="section-header">
+      <div class="section-label section-label-green">AI Sprite Generation</div>
+      <h2>從手繪到遊戲角色</h2>
+      <p class="section-desc">用 Nano Banana 把手繪轉成遊戲角色，生成搖擺、點頭、比讚三組動作，每組 8 幀。</p>
+    </div>
 
     <div class="img-grid">
-      <div class="img-card">
+      <figure class="img-card">
         <img src="IMG_2579.PNG" alt="虎斑喵動作序列圖">
-        <div class="caption">虎斑喵 — 3 組動作序列</div>
-      </div>
-      <div class="img-card">
+        <figcaption>虎斑喵 — 3 組動作序列</figcaption>
+      </figure>
+      <figure class="img-card">
         <img src="IMG_2576.PNG" alt="橘喵動作序列圖">
-        <div class="caption">橘喵 — 3 組動作序列</div>
-      </div>
+        <figcaption>橘喵 — 3 組動作序列</figcaption>
+      </figure>
     </div>
 
-    <p style="margin-top: 24px;">每組動作 8 幀，在遊戲中流暢播放：</p>
-
-    <div class="sprite-section-title">虎斑喵 — 搖擺動畫</div>
+    <div class="sprite-title">虎斑喵 — 搖擺動畫</div>
     <div class="sprite-row">
-      <div><img src="cat_A_frames/catA_sway_F01.png" alt="F1"><div class="sprite-label">01</div></div>
-      <div><img src="cat_A_frames/catA_sway_F02.png" alt="F2"><div class="sprite-label">02</div></div>
-      <div><img src="cat_A_frames/catA_sway_F03.png" alt="F3"><div class="sprite-label">03</div></div>
-      <div><img src="cat_A_frames/catA_sway_F04.png" alt="F4"><div class="sprite-label">04</div></div>
-      <div><img src="cat_A_frames/catA_sway_F05.png" alt="F5"><div class="sprite-label">05</div></div>
-      <div><img src="cat_A_frames/catA_sway_F06.png" alt="F6"><div class="sprite-label">06</div></div>
-      <div><img src="cat_A_frames/catA_sway_F07.png" alt="F7"><div class="sprite-label">07</div></div>
-      <div><img src="cat_A_frames/catA_sway_F08.png" alt="F8"><div class="sprite-label">08</div></div>
+      <div class="sprite-frame"><img src="cat_A_frames/catA_sway_F01.png" alt="F1"><div class="sprite-label">01</div></div>
+      <div class="sprite-frame"><img src="cat_A_frames/catA_sway_F02.png" alt="F2"><div class="sprite-label">02</div></div>
+      <div class="sprite-frame"><img src="cat_A_frames/catA_sway_F03.png" alt="F3"><div class="sprite-label">03</div></div>
+      <div class="sprite-frame"><img src="cat_A_frames/catA_sway_F04.png" alt="F4"><div class="sprite-label">04</div></div>
+      <div class="sprite-frame"><img src="cat_A_frames/catA_sway_F05.png" alt="F5"><div class="sprite-label">05</div></div>
+      <div class="sprite-frame"><img src="cat_A_frames/catA_sway_F06.png" alt="F6"><div class="sprite-label">06</div></div>
+      <div class="sprite-frame"><img src="cat_A_frames/catA_sway_F07.png" alt="F7"><div class="sprite-label">07</div></div>
+      <div class="sprite-frame"><img src="cat_A_frames/catA_sway_F08.png" alt="F8"><div class="sprite-label">08</div></div>
     </div>
 
-    <div class="sprite-section-title">橘喵 — 搖擺動畫</div>
+    <div class="sprite-title">橘喵 — 搖擺動畫</div>
     <div class="sprite-row">
-      <div><img src="cat_B_frames/catB_sway_F01.png" alt="F1"><div class="sprite-label">01</div></div>
-      <div><img src="cat_B_frames/catB_sway_F02.png" alt="F2"><div class="sprite-label">02</div></div>
-      <div><img src="cat_B_frames/catB_sway_F03.png" alt="F3"><div class="sprite-label">03</div></div>
-      <div><img src="cat_B_frames/catB_sway_F04.png" alt="F4"><div class="sprite-label">04</div></div>
-      <div><img src="cat_B_frames/catB_sway_F05.png" alt="F5"><div class="sprite-label">05</div></div>
-      <div><img src="cat_B_frames/catB_sway_F06.png" alt="F6"><div class="sprite-label">06</div></div>
-      <div><img src="cat_B_frames/catB_sway_F07.png" alt="F7"><div class="sprite-label">07</div></div>
-      <div><img src="cat_B_frames/catB_sway_F08.png" alt="F8"><div class="sprite-label">08</div></div>
+      <div class="sprite-frame"><img src="cat_B_frames/catB_sway_F01.png" alt="F1"><div class="sprite-label">01</div></div>
+      <div class="sprite-frame"><img src="cat_B_frames/catB_sway_F02.png" alt="F2"><div class="sprite-label">02</div></div>
+      <div class="sprite-frame"><img src="cat_B_frames/catB_sway_F03.png" alt="F3"><div class="sprite-label">03</div></div>
+      <div class="sprite-frame"><img src="cat_B_frames/catB_sway_F04.png" alt="F4"><div class="sprite-label">04</div></div>
+      <div class="sprite-frame"><img src="cat_B_frames/catB_sway_F05.png" alt="F5"><div class="sprite-label">05</div></div>
+      <div class="sprite-frame"><img src="cat_B_frames/catB_sway_F06.png" alt="F6"><div class="sprite-label">06</div></div>
+      <div class="sprite-frame"><img src="cat_B_frames/catB_sway_F07.png" alt="F7"><div class="sprite-label">07</div></div>
+      <div class="sprite-frame"><img src="cat_B_frames/catB_sway_F08.png" alt="F8"><div class="sprite-label">08</div></div>
     </div>
   </div>
 
-  <hr class="divider">
+  <hr class="section-divider">
 
-  <!-- 遊戲介紹 -->
-  <div class="section">
-    <div class="section-label">Gameplay</div>
-    <h2>遊戲玩法</h2>
-    <p>模擬湯姆熊街機的節奏遊戲體驗。投幣、選歌、跟著節拍按鍵，還有結算評分。</p>
+  <!-- Gameplay -->
+  <div class="section" id="gameplay">
+    <div class="section-header">
+      <div class="section-label">Gameplay</div>
+      <h2>遊戲玩法</h2>
+      <p class="section-desc">模擬湯姆熊街機的節奏遊戲體驗。投幣、選歌、跟著節拍按鍵。</p>
+    </div>
 
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">🪙</div>
+        <div class="feature-icon feature-icon-coral">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
         <h3>投幣開始</h3>
         <p>按空白鍵投幣，像真的街機一樣</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🎶</div>
+        <div class="feature-icon feature-icon-teal">
+          <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
         <h3>5 首歌曲</h3>
-        <p>小星星、小蜜蜂、兩隻老虎，還有吉伊卡哇的兩首歌</p>
+        <p>小星星、小蜜蜂、兩隻老虎，還有吉伊卡哇兩首歌</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">⬅️</div>
+        <div class="feature-icon feature-icon-green">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </div>
         <h3>雙軌操作</h3>
         <p>左鍵控制虎斑喵、右鍵控制橘喵</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">✨</div>
+        <div class="feature-icon feature-icon-coral">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
         <h3>豐富回饋</h3>
         <p>Perfect / Great / Good 判定、Combo、粒子特效</p>
       </div>
     </div>
   </div>
 
-  <hr class="divider">
+  <hr class="section-divider">
 
-  <!-- 試玩 -->
+  <!-- Try It -->
   <div class="section">
-    <div class="section-label">Try It</div>
-    <h2>試玩遊戲</h2>
-    <p>直接在這裡體驗。投個幣、選首歌、跟著虎斑喵和橘喵一起打節奏。</p>
+    <div class="section-header">
+      <div class="section-label section-label-teal">Try It</div>
+      <h2>試玩遊戲</h2>
+      <p class="section-desc">直接在這裡體驗。投個幣、選首歌、跟著虎斑喵和橘喵一起打節奏。</p>
+    </div>
     <div class="game-embed">
       <iframe src="game.html" allow="autoplay"></iframe>
     </div>
-    <p class="game-embed-hint">可以直接在上面玩 — 用鍵盤 ← → 操作</p>
+    <p class="embed-hint">可以直接在上面玩 — 用鍵盤 ← → 操作</p>
   </div>
 
-  <hr class="divider">
+  <hr class="section-divider">
 
-  <!-- 時間線 -->
-  <div class="section">
-    <div class="section-label">Timeline</div>
-    <h2>創作時間線</h2>
-    <p>2026 年 4 月 3 日，因為班機延誤而展開的三小時創作之旅。</p>
-
+  <!-- Timeline -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <div class="section-label section-label-green">Timeline</div>
+      <h2>創作時間線</h2>
+      <p class="section-desc">2026 年 4 月 3 日，因為班機延誤而展開的三小時創作之旅。</p>
+    </div>
     <div class="timeline">
-      <div class="timeline-item">
-        <div class="time">13:00</div>
-        <div class="event">班機延誤，Celia 提議「爸爸，我們來做遊戲！」</div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">13:10</div>
-        <div class="event">Celia 拿起鉛筆畫了一隻虎斑喵和一隻橘喵作為遊戲主角</div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">13:30</div>
-        <div class="event">用 Nano Banana 把手繪轉成遊戲角色，生成三組動作各 8 幀</div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">13:50</div>
-        <div class="event">用 Claude Code 建立遊戲框架：投幣、選歌、遊戲、結算四頁流程</div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">14:20</div>
-        <div class="event">音符下落、判定系統、Combo 連擊、5 首歌曲合成器旋律完成</div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">14:40</div>
-        <div class="event">角色序列圖放進遊戲，打擊時觸發反應動畫和粒子特效</div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">15:00</div>
-        <div class="event">視覺打磨 — 螢幕震動、軌道閃光、判定線脈衝、按鍵彈跳</div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">15:20</div>
-        <div class="event">導入吉伊卡哇 MP3，用 Web Audio API 自動分析節拍生成 beatmap</div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">15:40</div>
-        <div class="event">每首歌獨立排行榜上線，localStorage 儲存前 10 名</div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">16:00</div>
-        <div class="event">完成！Celia 試玩，玩得超開心</div>
-      </div>
+      <div class="tl-item"><div class="tl-time">13:00</div><div class="tl-event">班機延誤，Celia 提議「爸爸，我們來做遊戲！」</div></div>
+      <div class="tl-item"><div class="tl-time">13:10</div><div class="tl-event">Celia 拿起鉛筆畫了一隻虎斑喵和一隻橘喵作為遊戲主角</div></div>
+      <div class="tl-item"><div class="tl-time">13:30</div><div class="tl-event">用 Nano Banana 把手繪轉成遊戲角色，生成三組動作各 8 幀</div></div>
+      <div class="tl-item"><div class="tl-time">13:50</div><div class="tl-event">用 Claude Code 建立遊戲框架：投幣、選歌、遊戲、結算四頁流程</div></div>
+      <div class="tl-item"><div class="tl-time">14:20</div><div class="tl-event">音符下落、判定系統、Combo 連擊、5 首歌曲合成器旋律完成</div></div>
+      <div class="tl-item"><div class="tl-time">14:40</div><div class="tl-event">角色序列圖放進遊戲，打擊時觸發反應動畫和粒子特效</div></div>
+      <div class="tl-item"><div class="tl-time">15:00</div><div class="tl-event">視覺打磨 — 螢幕震動、軌道閃光、判定線脈衝</div></div>
+      <div class="tl-item"><div class="tl-time">15:20</div><div class="tl-event">導入吉伊卡哇 MP3，用 Web Audio API 自動分析節拍生成 beatmap</div></div>
+      <div class="tl-item"><div class="tl-time">15:40</div><div class="tl-event">每首歌獨立排行榜上線，localStorage 儲存前 10 名</div></div>
+      <div class="tl-item"><div class="tl-time">16:00</div><div class="tl-event">完成！Celia 試玩，玩得超開心</div></div>
     </div>
   </div>
 
-  <hr class="divider">
+  <hr class="section-divider">
 
-  <!-- 技術 -->
+  <!-- Tech -->
   <div class="section">
-    <div class="section-label">Tech Stack</div>
-    <h2>技術細節</h2>
-    <p>純前端實作，不依賴任何框架，用瀏覽器就能玩。</p>
+    <div class="section-header">
+      <div class="section-label">Tech Stack</div>
+      <h2>技術細節</h2>
+      <p class="section-desc">純前端實作，不依賴任何框架，用瀏覽器就能玩。</p>
+    </div>
     <div class="tech-tags">
       <span class="tech-tag">HTML / CSS / JS</span>
       <span class="tech-tag">Web Audio API</span>
@@ -623,21 +895,19 @@
       <span class="tech-tag">Claude Code</span>
       <span class="tech-tag">Nano Banana</span>
     </div>
-    <p style="margin-top: 16px;">
-      合成器旋律使用 Web Audio API 即時生成。吉伊卡哇兩首歌使用 MP3 播放，透過能量分析演算法自動偵測節拍生成 beatmap。角色動畫由 8 幀序列圖驅動，打擊時觸發反應動畫和粒子特效。
-    </p>
   </div>
 
-  <hr class="divider">
+  <hr class="section-divider">
 
   <!-- Roadmap -->
   <div class="section">
-    <div class="section-label">Roadmap</div>
-    <h2>未來待辦</h2>
-
+    <div class="section-header">
+      <div class="section-label section-label-teal">Roadmap</div>
+      <h2>未來待辦</h2>
+    </div>
     <div class="roadmap-grid">
       <div class="roadmap-card">
-        <h3>🎮 遊戲優化</h3>
+        <h3><span class="roadmap-icon roadmap-icon-coral">🎮</span> 遊戲優化</h3>
         <ul>
           <li>改善節奏提示</li>
           <li>角色全新造型</li>
@@ -645,14 +915,14 @@
         </ul>
       </div>
       <div class="roadmap-card">
-        <h3>🔧 硬體升級</h3>
+        <h3><span class="roadmap-icon roadmap-icon-teal">🔧</span> 硬體升級</h3>
         <ul>
           <li>ESP32 + 感測器</li>
           <li>實體按鍵 & LED</li>
         </ul>
       </div>
       <div class="roadmap-card">
-        <h3>📱 App 上架</h3>
+        <h3><span class="roadmap-icon roadmap-icon-green">📱</span> App 上架</h3>
         <ul>
           <li>打包 iOS / Android</li>
           <li>上架 App Store</li>
@@ -662,18 +932,18 @@
   </div>
 
   <!-- CTA -->
-  <div class="cta">
+  <div class="cta-section">
     <h2>來玩吧</h2>
     <p>投個幣，選首歌，跟著虎斑喵和橘喵一起打節奏。</p>
-    <a href="game.html" class="btn-primary">開始遊戲 →</a>
+    <a href="game.html" class="btn btn-coral">開始遊戲 →</a>
     <p class="cta-hint">請先關閉手機靜音，才能聽到音樂</p>
   </div>
 
   <!-- Footer -->
-  <div class="footer">
+  <footer>
     <p>喵狗節奏大師 — Created by Celia & 爸爸 @ 函館機場</p>
     <p style="margin-top: 8px;">2026.04.03 ｜ Powered by <a href="#">Claude Code</a> + Nano Banana + 愛</p>
-  </div>
+  </footer>
 
 </body>
 </html>
