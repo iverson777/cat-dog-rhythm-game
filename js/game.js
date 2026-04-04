@@ -382,7 +382,7 @@ const GameEngine = (() => {
       const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i+1);
       row.innerHTML = `
         <span class="lb-rank">${medal}</span>
-        <span class="lb-name">${entry.name || '---'}</span>
+        <span class="lb-name">${entry.name || 'Celia'}</span>
         <span class="lb-score">${entry.score.toLocaleString()}</span>
         <span class="lb-grade">${entry.grade}</span>
       `;
