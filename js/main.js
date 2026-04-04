@@ -233,6 +233,8 @@ document.getElementById('btn-back-select').addEventListener('click', () => {
 
 document.addEventListener('keydown', (e) => {
   if (!document.getElementById('result-page').classList.contains('active')) return;
+  // Don't hijack Enter while typing a leaderboard name
+  if (document.activeElement && document.activeElement.id === 'lb-name-input') return;
 
   if (e.code === 'Enter') {
     e.preventDefault();

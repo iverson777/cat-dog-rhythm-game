@@ -299,9 +299,14 @@ const GameEngine = (() => {
     document.getElementById('result-good').textContent = counts.good;
     document.getElementById('result-max-combo').textContent = maxCombo;
 
-    // Save to leaderboard
-    saveScore(songData.id, score, grade);
-    renderLeaderboard(songData.id);
+    // Check if score qualifies for leaderboard
+    const qualifies = isTopScore(songData.id, score);
+    if (qualifies) {
+      showNameInput(songData.id, score, grade);
+    } else {
+      saveScore(songData.id, score, grade, '---');
+      renderLeaderboard(songData.id);
+    }
 
     switchPage('result-page');
   }
@@ -313,15 +318,53 @@ const GameEngine = (() => {
     } catch(e) { return []; }
   }
 
-  function saveScore(songId, score, grade) {
+  function isTopScore(songId, newScore) {
+    const lb = getLeaderboard(songId);
+    if (lb.length < 10) return true;
+    return newScore > lb[lb.length - 1].score;
+  }
+
+  function saveScore(songId, score, grade, name) {
     const lb = getLeaderboard(songId);
     const now = new Date();
     const dateStr = (now.getMonth()+1) + '/' + now.getDate() + ' ' +
       now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0');
-    lb.push({ score, grade, date: dateStr });
+    lb.push({ score, grade, date: dateStr, name: name || '---' });
     lb.sort((a, b) => b.score - a.score);
-    if (lb.length > 10) lb.length = 10; // keep top 10
+    if (lb.length > 10) lb.length = 10;
     localStorage.setItem('lb_' + songId, JSON.stringify(lb));
+  }
+
+  function showNameInput(songId, newScore, grade) {
+    const container = document.getElementById('leaderboard-list');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const prompt = document.createElement('div');
+    prompt.className = 'lb-name-prompt';
+    prompt.innerHTML = `
+      <div class="lb-congrats">🎉 恭喜上榜！</div>
+      <div class="lb-name-form">
+        <input type="text" id="lb-name-input" class="lb-name-input" placeholder="輸入你的名字" maxlength="8" autocomplete="off">
+        <button id="lb-name-submit" class="btn btn-confirm lb-name-btn">確認</button>
+      </div>
+    `;
+    container.appendChild(prompt);
+
+    const input = document.getElementById('lb-name-input');
+    const submitBtn = document.getElementById('lb-name-submit');
+    input.focus();
+
+    function submit() {
+      const name = input.value.trim() || '???';
+      saveScore(songId, newScore, grade, name);
+      renderLeaderboard(songId);
+    }
+
+    submitBtn.addEventListener('click', submit);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') submit();
+    });
   }
 
   function renderLeaderboard(songId) {
@@ -339,9 +382,9 @@ const GameEngine = (() => {
       const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i+1);
       row.innerHTML = `
         <span class="lb-rank">${medal}</span>
+        <span class="lb-name">${entry.name || '---'}</span>
         <span class="lb-score">${entry.score.toLocaleString()}</span>
         <span class="lb-grade">${entry.grade}</span>
-        <span class="lb-date">${entry.date}</span>
       `;
       container.appendChild(row);
     });

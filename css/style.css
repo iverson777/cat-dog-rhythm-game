@@ -656,10 +656,28 @@ body {
   border: 2px solid #f0b429;
 }
 .lb-rank { width: 28px; text-align: center; font-weight: bold; }
-.lb-score { flex: 1; font-weight: bold; color: #333; }
-.lb-grade { width: 28px; text-align: center; color: #e94560; font-weight: bold; }
-.lb-date { font-size: 0.8rem; color: #aaa; }
+.lb-name { flex: 1; font-weight: bold; color: #333; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lb-score { width: 60px; text-align: right; font-weight: bold; color: #555; }
+.lb-grade { width: 28px; text-align: center; color: #e94560; font-weight: bold; margin-left: 6px; }
 .lb-empty { text-align: center; color: #ccc; padding: 12px; }
+
+/* Leaderboard name input */
+.lb-name-prompt { text-align: center; padding: 12px 0; }
+.lb-congrats { font-size: 1.1rem; font-weight: bold; color: #f0b429; margin-bottom: 10px; }
+.lb-name-form { display: flex; gap: 8px; justify-content: center; align-items: center; }
+.lb-name-input {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 2px solid #f0b429;
+  border-radius: 8px;
+  outline: none;
+  width: 140px;
+  text-align: center;
+  font-family: inherit;
+  background: #fff8e1;
+}
+.lb-name-input:focus { border-color: #e94560; box-shadow: 0 0 0 2px rgba(233,69,96,0.2); }
+.lb-name-btn { padding: 8px 16px !important; font-size: 0.9rem !important; min-width: auto !important; }
 
 /* Touch Controls (mobile) */
 .touch-controls {
