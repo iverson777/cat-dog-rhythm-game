@@ -246,10 +246,10 @@ const GameEngine = (() => {
   function showJudge(lane, type) {
     const el = document.getElementById('judge-' + lane);
     el.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+    // Reset animation: remove class, force reflow, then re-add
+    el.className = 'judge-text';
+    void el.offsetWidth;
     el.className = 'judge-text ' + type + ' show';
-    el.addEventListener('animationend', () => {
-      el.className = 'judge-text';
-    }, { once: true });
   }
 
   function reactCharacter(lane, type) {
